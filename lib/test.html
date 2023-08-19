@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用自定义的promise</title>
+</head>
+<body>
+    <script src="Promise.js"></script>
+    <script>
+        // 分析：就是说创建promise执行异步操作，然后p.then将回调函数放入回调队列，而只要在resolved中改变了状态同时执行回调队列
+        const p = new Promise((resolve, reject)=>{
+            try{
+                setTimeout(()=>{
+                    // !!!注意此处调用resolved的是windows对象，而不是通过promise调用的
+                    // setTimeout里抛出的异常没法直接捕获
+                    resolve(11)
+                }, 1000)
+            } catch(error){
+                throw error
+            }
+
+        }).then(
+            value => {
+                console.log('onResolved1()', value)
+            },
+            reason => {
+                console.log('onRejected1()', reason)
+
+            }
+        ).then(
+            value => {
+                throw 444
+                console.log('onResolved2()', value)
+            },
+            reason => {
+                console.log('onRejected2()', reason)
+
+            }
+        ).catch(reason => {
+
+        })
+    </script>
+</body>
+</html>

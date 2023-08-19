@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function f3(){
+    console.log('f3:', this)
+  }
+  function Person(color){
+    console.log(this)
+    this.color = color
+    f3()
+    this.getColor = function () {
+      console.log(this)
+      return this.color
+    }
+    this.setColor = function(color){
+      console.log(this)
+      this.color = color
+    }
+  }
+  Person('1') //this是window
+  let p = new Person('2') //this是p
+  // p.getColor()
+</script>
+</body>
+</html>

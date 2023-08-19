@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function queryData(url){
+        return new Promise((resolve, reject)=>{
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', url)
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState!=4)
+                    return
+                if(xhr.status>=200 && xhr.status<300){
+                    resolve(xhr.response)
+                }else{
+                    // console.log('reject')
+                    console.log(xhr)
+                    reject('服务器问题：')
+                }
+            }
+            xhr.send()
+        })
+    }
+    const p = queryData('http://127.0.0.1:8000/server?a=1&b=3&c=8')
+    p.then(
+        value => {
+            console.log('请求成功： '+value+'\n'+'发起第二轮请求')
+            return queryData('http://127.0.0.1:8000')
+        },
+        reason => {
+            console.log('第一轮请求服务器故障：'+reason+' 终止进程')
+        }
+    ).then(
+        value => {},
+        reason => {
+            console.log('第二轮请求服务器故障：'+reason+' 终止进程')
+        }
+    )
+</script>
+</body>
+</html>

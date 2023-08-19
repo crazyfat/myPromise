@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      #result{
+        width: 200px;
+        height: 100px;
+        border: solid 1px #90b;
+      }
+    </style>
+</head>
+<body>
+  <div id="result"></div>
+<script>
+    function handel(data){
+        const res = document.getElementById('result')
+        res.innerHTML = data.name
+    }
+</script>
+<script src='http://localhost:63342/myPromise/ajax/%E5%8E%9F%E7%94%9Fajax/jsonP/app.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <h1>跨域问题</h1>
+  <button>点击请求</button>
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', ()=>{
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', '/data')
+      xhr.send()
+        xhr.onreadystatechange = function (){
+            if(xhr.readyState!=4)
+                return
+            if(xhr.status>=200 && xhr.status<300){
+                alert(xhr.response)
+            }
+        }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <button>but1</button>
+  <button>but2</button>
+  <button>but3</button>
+  <script>
+    const btns = document.querySelectorAll('button')
+    for(let btn of btns){
+      btn.addEventListener('click', ()=>{
+        alert(`${btn.innerHTML}`)
+      })
+    }
+  </script>
+</body>
+
+</html>

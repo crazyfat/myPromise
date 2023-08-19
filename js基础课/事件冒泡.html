@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: cornflowerblue;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #box2{
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+    let x = 0, y = 0
+    const div = document.getElementById('box')
+    const div2 = document.getElementById('box2')
+    window.addEventListener('mousemove', (event)=>{
+        div.style.left = event.x+'px'
+        div.style.top = event.y+'px'
+    })
+    div2.addEventListener('mousemove', (event)=>{
+        event.stopPropagation()
+    })
+
+</script>
+</body>
+</html>

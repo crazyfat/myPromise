@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 2px #9900bb;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+        const result = document.getElementById('result')
+        //键盘按下事件
+        window.onkeydown = function (){
+            const xhr = new XMLHttpRequest()
+            xhr.responseType = 'json'
+            xhr.open('GET', 'http://127.0.0.1:8000/json-server')
+            xhr.send()
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState!=4)
+                    return
+                if(xhr.status>=200 && xhr.status<300){
+                    //手动对数据进行转化
+                    // let data = JSON.parse(xhr.response)
+                    // result.innerHTML = data.name
+                    //自动转化 设置xhr属性
+                    console.log(xhr.response)
+                    result.innerHTML = xhr.response.name
+
+                }
+            }
+        }
+    </script>
+</body>
+</html>

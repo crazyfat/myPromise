@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.11.0/qs.js"></script>
+    <script>
+        // import axios from "axios";
+        var qs = Qs
+        const btns = document.querySelectorAll('button')
+        // 配置baseURL
+        // axios.defaults.baseURL=''
+        btns[0].addEventListener('click', ()=>{
+            // request GET
+            axios.get('http://127.0.0.1:8000/axios-server', {
+                // url
+                params:{
+                    id:100,
+                    vip:7
+                },
+                // 请求头信息
+                header:{
+
+                }
+            }).then(
+                value => {
+                    console.log(value)
+                    alert(JSON.stringify(value))
+
+                }
+            )
+        })
+
+        const data = {
+            username:'admin',
+            password:'123'
+        }
+        btns[1].onclick = function (){
+            axios.post('http://127.0.0.1:8000/axios-server', qs.stringify(data),{
+                params: {
+                    id:200,
+                    vip:9
+                },
+                headers:{
+                    height:99
+                }
+            }).then(
+                value => {
+                    alert(JSON.stringify(value))
+                }
+            )
+        }
+        btns[2].onclick = function (){
+            axios({
+                url:'http://127.0.0.1:8000/axios-server',
+                method:'GET',
+                params:{
+                    vip:10,
+                    level:20
+                },
+                header:{
+                    a:100
+                },
+                data:{
+                    user:'admin',
+                    pwd:'123'
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

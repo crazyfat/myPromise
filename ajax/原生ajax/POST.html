@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 4px #9900bb;
+        }
+    </style>
+</head>
+<body>
+    <div id="result">
+
+    </div>
+    <script>
+        const result = document.getElementById('result')
+        result.addEventListener("mouseover", ()=>{
+            // console.log('xxx')
+            const xhr = new XMLHttpRequest()
+            xhr.open('POST', 'http://127.0.0.1:8000/server?a=4')
+            // content-type:设置请求体类型，后面是查询字符串类型，ajax默认是字符串类型，也就是不设置这个的时候
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            // xhr.setRequestHeader()
+            xhr.send('a=1&b=8&c=99')
+            console.log(xhr)
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState!=4)
+                    return
+                if(xhr.status>=200 && xhr.status<300){
+                    result.innerHTML = xhr.response
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

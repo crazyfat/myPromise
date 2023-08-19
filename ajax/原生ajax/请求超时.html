@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #result{
+            margin-top: 20px;
+            width: 200px;
+            height: 100px;
+            border: solid 2px #9900bb;
+        }
+        #click{
+            margin-op: 20px;
+            width: 200px;
+            height: 40px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="click">点击发送请求</button>
+    <div id="result"></div>
+    <script>
+
+        const btn = document.getElementById('click')
+        const res = document.getElementById('result')
+        btn.addEventListener('click', ()=>{
+            const xhr = new XMLHttpRequest()
+            // 超时设置
+            xhr.timeout = 1000
+            // 超时回调
+            xhr.ontimeout = function (){
+                alert('time out!')
+            }
+            // 网络异常回调
+            xhr.onerror = function (){
+                alert('on error')
+            }
+            xhr.open('GET', 'http://127.0.0.1:8000/delay')
+            xhr.send()
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState!=4)
+                    return
+                if(xhr.status>=200 && xhr.status<300){
+                    res.innerHTML = xhr.response
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

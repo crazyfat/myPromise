@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <hr>
+  <ul id="list">
+    <li id="u1">huawei</li>
+    <li id="u2">apple</li>
+    <li id="u3">小米</li>
+  </ul>
+  <script>
+    const btn = document.getElementById('btn')
+    const ul = document.getElementById('list')
+    btn.addEventListener('click', ()=>{
+      const li = document.createElement('li')
+      li.innerHTML = 'oppo'
+      li.setAttribute('id', 'u4')
+      // appendChild向最后位置添加
+      // ul.appendChild(li)
+      // insertAdjacentElement向任意位置添加
+      ul.insertAdjacentElement("beforeend", li)
+    })
+  </script>
+</body>
+</html>

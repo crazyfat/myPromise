@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 1px #90b;
+        }
+        #block{
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<!--点击按钮发起请求，请求在div上呈现-->
+    <button>点击发送请求</button>
+    <div id="block"></div>
+    <div id="result"></div>
+</body>
+<script>
+    const btn = document.getElementsByTagName('button')[0]
+    const result = document.getElementById('result')
+    //绑定事件
+    btn.onclick = function (){
+        // 1、创建对象
+        const xhr = new XMLHttpRequest()
+        // 2、初始化，设置请求和方法url
+        xhr.open('GET', 'http://127.0.0.1:8000/server?a=1&b=3&c=8')
+        // 3、发送
+        xhr.send()
+        // 4、事件绑定 处理服务端返回的结果 ready state是xhr对象中的属性，表示状态
+        // 0--未初始化 1--open已调用 2--send已调用 3--服务端返回部分 4--返回所有结果
+        xhr.onreadystatechange = function (){
+            // 状态4做服务器返回处理
+            if(xhr.readyState === 4){
+                // 判断相应状态码
+                if(xhr.status >= 200 && xhr.status < 300){
+                    // 处理结果 行 头 空行 体
+                    // 1 相应行
+                    console.log(xhr.status) //状态码
+                    console.log(xhr.statusText) //状态字符串（和前者一起都是响应头）
+                    console.log(xhr.getAllResponseHeaders()) // 所有响应头
+                    console.log(xhr.response)// 响应体
+                    result.innerHTML = xhr.response// 设置result的文本
+                }
+            }
+        }
+    }
+</script>
+</html>

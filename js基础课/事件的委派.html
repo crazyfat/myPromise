@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">点击添加</button>
+    <ul id="list">
+        <li><a href="">链接一</a></li>
+        <li><a href="">链接二</a></li>
+        <li><a href="">链接三</a></li>
+    </ul>
+
+</body>
+<script>
+    // const list = document.querySelectorAll('ul a')
+    const ul = document.getElementById('list')
+    const btn = document.getElementById('btn')
+    const list = ul.getElementsByTagName("a")
+    // for(let i = 0; i<list.length; i++){
+    //     list[i].addEventListener('click', event=>{
+    //         alert(event.target.textContent)
+    //     })
+    // }
+    ul.addEventListener('click', event=>{
+        // 在执行代码之前，先判断事件是由谁触发的
+
+        if([...list].includes(event.target))
+            alert(event.target.textContent)
+    })
+    btn.addEventListener('click', event=>{
+        ul.insertAdjacentHTML('beforeend', '<li><a href="">链接四</a></li>')
+    })
+
+</script>
+</html>

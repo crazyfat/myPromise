@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #result{
+      width: 200px;
+      height: 100px;
+      background-color: azure;
+    }
+    #result2{
+      width: 180px;
+      height: 90px;
+      background-color:#ff0;
+    }
+  </style>
+</head>
+<body>
+  <div id="result">
+    <div id="result2"></div>
+  </div>
+  <script>
+    const res = document.getElementById('result')
+
+    res.addEventListener('click', function (event){
+      console.log('target: ',event.target)
+      console.log('current: ',event.currentTarget)
+      console.log('this: ', this)
+    })
+  </script>
+</body>
+</html>

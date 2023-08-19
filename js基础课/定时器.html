@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  console.time("间隔")
+  setInterval(()=>{
+    console.timeEnd("间隔")
+    alert("定时器执行")
+    console.time("间隔")
+  },2000)
+</script>
+</body>
+</html>

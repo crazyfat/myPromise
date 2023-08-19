@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <button>点击发送请求</button>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.2/axios.min.js"></script>
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', ()=>{
+      axios.post('http://127.0.0.1:8000/cros-server', {
+        params: {
+          vip: 1,
+          ht: 11
+        }
+      }).then(
+        value => {
+          console.log(value)
+          alert(value)
+        }
+      )
+    })
+  </script>
+</body>
+</html>

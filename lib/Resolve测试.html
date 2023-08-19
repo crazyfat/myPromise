@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resolved测试</title>
+</head>
+<body>
+    <div>
+        <h1>resolve（）和reject（）的实现</h1>
+    </div>
+<script src="Promise.js"></script>
+<script>
+    const p1 = Promise.reject(2)
+    const p2 = Promise.resolve(Promise.resolve(3))
+    const p3 = Promise.resolve(Promise.reject(4))
+    const p4 = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(444)
+        }, 1000)
+    })
+    const p5 = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(555)
+        }, 600)
+    })
+    const p6 = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(666)
+        }, 500)
+    })
+    // p1.then(
+    //     value => {console.log('onResolved() p1',value)}
+    // )
+    // p2.then(
+    //     value => {console.log('onResolved() p2',value)}
+    // )
+    // p3.catch(
+    //     reason => {console.log('onRejected() p3', reason)}
+    // )
+    // const pAll = Promise.all([p4, p1, p2])
+    const pRace = Promise.race([p4, p1, p2])
+
+    // pAll.then(
+    //     values => {console.log('onResolved(): '+values)},
+    //     reason => {console.log('onRejected(): '+reason)}
+    // )
+    pRace.then(
+        value => {console.log('onResolved(): '+value)},
+        reason => {console.log('onRejected(): '+reason)}
+    )
+
+</script>
+</body>
+</html>
